@@ -13,4 +13,7 @@ RUN gem update --system; \
 COPY --chown=app:app source/* /home/app/app/
 
 USER app
+
 RUN bundle install
+
+CMD ["ruby", "app.rb"]
