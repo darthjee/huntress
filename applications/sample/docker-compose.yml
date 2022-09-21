@@ -1,0 +1,20 @@
+version: '3'
+services:
+  redis:
+    image: redis:6.2.4
+    networks:
+      - huntress-sample-internal
+
+  ruby:
+    image: ruby:2.7.0
+    hostname: ruby
+    depends_on: [redis]
+    networks:
+      - huntress-sample-internal
+      - huntress
+
+networks:
+  huntress-sample-internal:
+    name: huntress-sample-internal
+  huntress:
+    name: huntress
