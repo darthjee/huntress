@@ -6,7 +6,7 @@ services:
       - huntress-sample-internal
 
   sample:
-    image: ruby:2.7.0
+    image: huntress_sample
     hostname: sample
     depends_on: [redis]
     networks:
