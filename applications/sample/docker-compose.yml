@@ -21,7 +21,7 @@ services:
       - huntress-sample-internal
       - huntress
     ports:
-      - 127.0.0.1:3000:3000
+      - 127.0.0.1:3000:80
 
 networks:
   huntress-sample-internal:
