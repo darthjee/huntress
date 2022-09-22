@@ -13,6 +13,16 @@ services:
       - huntress-sample-internal
       - huntress
 
+  sample-test:
+    image: huntress_sample
+    hostname: sample-test
+    depends_on: [redis]
+    networks:
+      - huntress-sample-internal
+      - huntress
+    ports:
+      - 127.0.0.1:3000:3000
+
 networks:
   huntress-sample-internal:
     name: huntress-sample-internal
