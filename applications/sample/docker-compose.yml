@@ -6,12 +6,22 @@ services:
       - huntress-sample-internal
 
   sample:
-    image: ruby:2.7.0
+    image: huntress_sample
     hostname: sample
     depends_on: [redis]
     networks:
       - huntress-sample-internal
       - huntress
+
+  sample-test:
+    image: huntress_sample
+    hostname: sample-test
+    depends_on: [redis]
+    networks:
+      - huntress-sample-internal
+      - huntress
+    ports:
+      - 127.0.0.1:3000:3000
 
 networks:
   huntress-sample-internal:
