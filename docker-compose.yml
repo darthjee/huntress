@@ -1,11 +1,10 @@
 version: '3'
 services:
   huntress:
-    image: ruby:2.7.0
+    image: darthjee/huntress:latest
     networks:
       - huntress
 
 networks:
   huntress:
     name: huntress
-
