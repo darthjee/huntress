@@ -1,14 +1,25 @@
+const http = require('http');
+const lodash = require('lodash');
+
 class RequestHandler {
-  constructor(req, resp) {
-    this.req = req;
-    this.resp = resp
+  constructor(request, response) {
+    this.request = request;
+    this.response = response;
   }
 
   call() {
-    console.info(this);
+    http.get('http://sample/', this.handleResponse);
+  }
+
+  handleResponse(response) {
+    response.on('data', this.handleData);
+  }
+
+  handleData(data) {
+    console.info(data);
   }
 }
 
-module.exports = (req, resp) => {
-  return new RequestHandler(req, resp).call();
+module.exports = (request, response) => {
+  return new RequestHandler(request, response).call();
 }
