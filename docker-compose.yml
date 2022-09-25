@@ -1,11 +1,22 @@
 version: '3'
 services:
-  huntress:
-    image: ruby:2.7.0
+  base: &base
+    image: darthjee/huntress:latest
     networks:
       - huntress
+    volumes:
+      - ./huntress/source:/home/app/app
+      - ./huntress/node_modules:/home/app/app/node_modules
+
+  huntress:
+    <<: *base
+    ports:
+      - 127.0.0.1:3000:80
+
+  huntress-debug:
+    <<: *base
+    entrypoint: /bin/sh
 
 networks:
   huntress:
     name: huntress
-
