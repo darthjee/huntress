@@ -1,10 +1,12 @@
 const http = require('http');
-const lodash = require('lodash');
+const _ = require('lodash');
 
 class RequestHandler {
   constructor(request, response) {
     this.request = request;
     this.response = response;
+
+    _.bindAll(this, 'handleResponse', 'handleData', 'end');
   }
 
   call() {
@@ -12,11 +14,17 @@ class RequestHandler {
   }
 
   handleResponse(response) {
-    response.on('data', this.handleData);
+    response
+      .on('data', this.handleData)
+      .on('end', this.end);
   }
 
   handleData(data) {
-    console.info(data);
+    this.response.write(data);
+  }
+
+  end() {
+    this.response.end();
   }
 }
 
