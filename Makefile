@@ -12,3 +12,6 @@ up-sample:
 
 build-huntress:
 	docker build $(PROJECT) -t $(HUNTRESS_NAME)
+
+up-huntress:
+	docker-compose up huntress
