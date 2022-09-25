@@ -8,6 +8,7 @@ services:
       - 127.0.0.1:3000:80
     volumes:
       - ./huntress/source:/home/app/app
+      - ./huntress/node_modules:/home/app/app/node_modules
 
   huntress-debug:
     image: darthjee/huntress:latest
@@ -16,6 +17,7 @@ services:
     entrypoint: /bin/sh
     volumes:
       - ./huntress/source:/home/app/app
+      - ./huntress/node_modules:/home/app/app/node_modules
 
 
 networks:

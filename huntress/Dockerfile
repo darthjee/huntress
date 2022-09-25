@@ -7,8 +7,7 @@ WORKDIR /home/app/app
 
 ADD source/  /home/app/app/
 
-RUN npm -g install $(sed -f packages_sed.sed package.json -n); \
-    rm /home/node/app/* -f
+RUN npm -g install
 
 USER node
 
