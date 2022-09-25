@@ -6,6 +6,8 @@ services:
       - huntress
     ports:
       - 127.0.0.1:3000:80
+    volumes:
+      - ./huntress/source:/home/app/app
 
 networks:
   huntress:
