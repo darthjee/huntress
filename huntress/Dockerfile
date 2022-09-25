@@ -11,3 +11,5 @@ RUN npm -g install $(sed -f packages_sed.sed package.json -n); \
     rm /home/node/app/* -f
 
 USER node
+
+ENTRYPOINT ["node", "server.js"]
