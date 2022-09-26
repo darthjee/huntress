@@ -1,4 +1,4 @@
-class RoutesConfig < Sinclair::Options
+class Config < Sinclair::Options
   with_options :routes
 
   def self.load_file(file_path)

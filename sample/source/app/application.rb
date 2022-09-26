@@ -7,7 +7,7 @@ module Application
     private
 
     def config
-      @config ||= RoutesConfig.load_file('config/routes.yml')
+      @config ||= Config.load_file('config/routes.yml')
     end
   end
 end
