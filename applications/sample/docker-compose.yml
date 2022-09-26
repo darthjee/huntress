@@ -5,9 +5,8 @@ services:
     networks:
       - huntress-sample-internal
 
-  sample:
+  base: &base
     image: huntress_sample
-    hostname: sample
     depends_on: [redis]
     networks:
       - huntress-sample-internal
@@ -15,17 +14,21 @@ services:
     volumes:
       - ./config:/home/app/app/config
 
+  sample:
+    <<: *base
+    hostname: sample
+
+  sample-dev:
+    <<: *base
+    volumes:
+      - ../../sample/source:/home/app/app
+      - ./config:/home/app/app/config
+
   sample-test:
-    image: huntress_sample
+    <<: *base
     hostname: sample-test
-    depends_on: [redis]
-    networks:
-      - huntress-sample-internal
-      - huntress
     ports:
       - 127.0.0.1:3000:80
-    volumes:
-      - ./config:/home/app/app/config
 
 networks:
   huntress-sample-internal:
