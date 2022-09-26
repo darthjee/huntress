@@ -10,6 +10,9 @@ build-sample:
 up-sample:
 	docker-compose -f applications/$(SAMPLE)/docker-compose.yml up sample-test
 
+dev-sample:
+	docker-compose -f applications/$(SAMPLE)/docker-compose.yml run sample-test /bin/bash
+
 build-huntress:
 	docker build $(PROJECT) -t $(HUNTRESS_NAME)
 

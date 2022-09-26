@@ -12,6 +12,8 @@ services:
     networks:
       - huntress-sample-internal
       - huntress
+    volumes:
+      - ./config:/home/app/app/config
 
   sample-test:
     image: huntress_sample
@@ -22,6 +24,8 @@ services:
       - huntress
     ports:
       - 127.0.0.1:3000:80
+    volumes:
+      - ./config:/home/app/app/config
 
 networks:
   huntress-sample-internal:
