@@ -8,8 +8,8 @@ $LOAD_PATH.unshift([root_path, 'app'].join('/'))
 
 require 'application'
 require 'endpoint'
-require 'config'
 require 'route'
+require 'config'
 
 set :port, 80
 set :bind, '0.0.0.0'
