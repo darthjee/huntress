@@ -4,10 +4,4 @@ class Config < Sinclair::Options
   def self.load_file(file_path)
     new(YAML.load_file(file_path))
   end
-
-  def routes
-    @routes.map do |route|
-      Route.new(route)
-    end
-  end
 end
