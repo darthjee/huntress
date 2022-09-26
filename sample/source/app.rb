@@ -2,9 +2,12 @@ require 'sinatra'
 require 'yaml'
 require 'sinclair'
 
-require_relative './app/application'
-require_relative './app/routes_config'
-require_relative './app/route'
+root_path = File.expand_path('..', __FILE__)
+$LOAD_PATH.unshift([root_path, 'app'].join('/'))
+
+require 'application'
+require 'routes_config'
+require 'route'
 
 set :port, 80
 set :bind, '0.0.0.0'
