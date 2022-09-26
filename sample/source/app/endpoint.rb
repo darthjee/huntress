@@ -11,12 +11,12 @@ class Endpoint
 
   def build
     content = self.content
-    Sinatra::Delegator.target.get(path) do
+    Sinatra::Delegator.target.public_send(http_method, path) do
       content
     end
   end
 
   private
 
-  delegate :path, :content, to: :route
+  delegate :path, :content, :http_method, to: :route
 end
