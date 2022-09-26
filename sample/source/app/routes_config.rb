@@ -1,7 +1,3 @@
-require 'yaml'
-require 'sinclair'
-require_relative './route'
-
 class RoutesConfig < Sinclair::Options
   with_options :routes
 
