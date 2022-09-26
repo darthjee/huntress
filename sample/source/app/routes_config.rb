@@ -1,16 +1,17 @@
 require 'yaml'
+require 'sinclair'
+require_relative './route'
 
-class RoutesConfig
-  class << self
-    def load(configs)
-    end
+class RoutesConfig < Sinclair::Options
+  with_options :routes
 
-    def load_file(file_path)
-      puts '-' * 80
-      YAML.load_file(file_path).tap do |yml|
-        puts yml
-      end
-      puts '-' * 80
+  def self.load_file(file_path)
+    new(YAML.load_file(file_path))
+  end
+
+  def routes
+    @routes.map do |route|
+      Route.new(route)
     end
   end
 end
