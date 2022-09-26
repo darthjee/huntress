@@ -1,7 +1,14 @@
-class Config < Sinclair::Options
-  with_options :routes
+class Config
+  include Arstotzka
 
   def self.load_file(file_path)
     new(YAML.load_file(file_path))
+  end
+
+  attr_reader :json
+  expose :routes
+  
+  def initialize(json = {})
+    @json = json
   end
 end
