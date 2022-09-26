@@ -6,14 +6,14 @@ module Application
 
     private
 
-    def config
-      @config ||= Config.load_file('config/routes.yml')
-    end
-
     def routes
       @routes ||= config.routes.map do |route|
         Route.new(route)
       end
+    end
+
+    def config
+      @config ||= Config.load_file('config/routes.yml')
     end
   end
 end
