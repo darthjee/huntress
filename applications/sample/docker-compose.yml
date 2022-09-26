@@ -29,6 +29,9 @@ services:
     hostname: sample-test
     ports:
       - 127.0.0.1:3000:80
+    volumes:
+      - ../../sample/source:/home/app/app
+      - ./config:/home/app/app/config
 
 networks:
   huntress-sample-internal:
