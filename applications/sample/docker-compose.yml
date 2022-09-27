@@ -20,13 +20,6 @@ services:
 
   sample-dev:
     <<: *base
-    volumes:
-      - ../../sample/source:/home/app/app
-      - ./config:/home/app/app/config
-
-  sample-test:
-    <<: *base
-    hostname: sample-test
     ports:
       - 127.0.0.1:3000:80
     volumes:
