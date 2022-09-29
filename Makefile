@@ -8,7 +8,10 @@ build-sample:
 	docker build $(SAMPLE) -t $(SAMPLE_NAME)
 
 up-sample:
-	docker-compose -f applications/$(SAMPLE)/docker-compose.yml up sample-test
+	docker-compose -f applications/$(SAMPLE)/docker-compose.yml up sample-dev
+
+dev-sample:
+	docker-compose -f applications/$(SAMPLE)/docker-compose.yml run sample-dev /bin/bash
 
 build-huntress:
 	docker build $(PROJECT) -t $(HUNTRESS_NAME)

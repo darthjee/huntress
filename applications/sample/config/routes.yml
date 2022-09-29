@@ -1,0 +1,5 @@
+routes:
+  - path: '/'
+    content: 'I am up'
+  - path: '/other'
+    content: 'This is the other route'
