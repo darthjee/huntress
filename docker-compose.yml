@@ -6,7 +6,7 @@ services:
       - huntress
     volumes:
       - ./source:/home/app/app
-      - ./node_modules:/home/app/app/node_modules
+      - ./.node_modules:/home/app/app/node_modules
 
   huntress:
     <<: *base
