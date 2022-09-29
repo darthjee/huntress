@@ -5,8 +5,8 @@ services:
     networks:
       - huntress
     volumes:
-      - ./source/source:/home/app/app
-      - ./source/node_modules:/home/app/app/node_modules
+      - ./source:/home/app/app
+      - ./node_modules:/home/app/app/node_modules
 
   huntress:
     <<: *base
