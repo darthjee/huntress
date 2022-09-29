@@ -6,7 +6,7 @@ services:
       - huntress-sample-internal
 
   base: &base
-    image: huntress_sample
+    image: darthjee/lemonade
     depends_on: [redis]
     networks:
       - huntress-sample-internal
