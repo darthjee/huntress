@@ -6,7 +6,7 @@ services:
       - huntress-sample-internal
 
   base: &base
-    image: huntress_sample
+    image: darthjee/lemonade
     depends_on: [redis]
     networks:
       - huntress-sample-internal
@@ -22,9 +22,6 @@ services:
     <<: *base
     ports:
       - 127.0.0.1:3000:80
-    volumes:
-      - ../../sample/source:/home/app/app
-      - ./config:/home/app/app/config
 
 networks:
   huntress-sample-internal:
