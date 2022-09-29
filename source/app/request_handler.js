@@ -10,7 +10,11 @@ class RequestHandler {
   }
 
   call() {
-    http.get('http://sample/', this._handleResponse);
+    http.get(this._url(), this._handleResponse);
+  }
+
+  _url() {
+    return 'http://sample/'  + this.request.url;
   }
 
   _handleResponse(response) {
