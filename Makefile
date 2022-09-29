@@ -7,7 +7,7 @@ up-sample:
 	docker-compose -f applications/$(SAMPLE)/docker-compose.yml up sample-dev
 
 build-huntress:
-	docker build $(PROJECT) -t $(HUNTRESS_NAME)
+	docker build source -t $(HUNTRESS_NAME)
 
 up-huntress:
 	docker-compose up huntress
