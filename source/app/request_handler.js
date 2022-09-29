@@ -6,24 +6,24 @@ class RequestHandler {
     this.request = request;
     this.response = response;
 
-    _.bindAll(this, 'handleResponse', 'handleData', 'end');
+    _.bindAll(this, '_handleResponse', '_handleData', '_end');
   }
 
   call() {
-    http.get('http://sample/', this.handleResponse);
+    http.get('http://sample/', this._handleResponse);
   }
 
-  handleResponse(response) {
+  _handleResponse(response) {
     response
-      .on('data', this.handleData)
-      .on('end', this.end);
+      .on('data', this._handleData)
+      .on('end', this._end);
   }
 
-  handleData(data) {
+  _handleData(data) {
     this.response.write(data);
   }
 
-  end() {
+  _end() {
     this.response.end();
   }
 }
