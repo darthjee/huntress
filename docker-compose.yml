@@ -2,8 +2,6 @@ version: '3'
 services:
   base: &base
     image: darthjee/huntress:latest
-    networks:
-      - huntress
     volumes:
       - ./source:/home/app/app
       - ./.node_modules:/home/app/app/node_modules
@@ -12,11 +10,26 @@ services:
     <<: *base
     ports:
       - 127.0.0.1:3000:80
+    networks:
+      - huntress
 
   huntress-dev:
     <<: *base
+    ports:
+      - 127.0.0.1:3000:80
+    networks:
+      - huntress-dev
+
+  huntress-test:
+    <<: *base
     entrypoint: /bin/sh
+    networks:
+      - huntress-test
 
 networks:
   huntress:
     name: huntress
+  huntress-dev:
+    name: huntress-dev
+  huntress-test:
+    name: huntress-test
