@@ -13,6 +13,9 @@ jobs:
       - image: circleci/node:17
       - image: darthjee/lemonade:latest
         name: sample
+        volumes:
+          - ./source/spec/support/sample_config:/home/app/app/config
+          - ./source/spec/support/sample_config:/home/app/app
     steps:
       - checkout
       - run:
