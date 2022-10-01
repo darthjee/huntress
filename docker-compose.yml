@@ -23,6 +23,14 @@ services:
   huntress-test:
     <<: *base
     entrypoint: /bin/sh
+    depends_on: [sample-application]
+    networks:
+      - huntress-test
+  sample-application:
+    hostname: sample
+    image: darthjee/lemonade
+    volumes:
+      - ./source/spec/support/sample_config:/home/app/app/config
     networks:
       - huntress-test
 
