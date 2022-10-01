@@ -22,5 +22,8 @@ jobs:
           name: NPM install
           command: npm install
       - run:
+          name: Debug
+          command: ls
+      - run:
           name: Jasmine
           command: npx jasmine
