@@ -1,7 +1,7 @@
 const http = require('http');
 const request = require('request');
 
-require('/home/app/app/app/server');
+require('../../app/server');
 
 describe("Server", function() {
   it("returns the content from other server", function(done){
