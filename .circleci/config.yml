@@ -11,6 +11,8 @@ jobs:
   test:
     docker:
       - image: circleci/node:17
+      - image: darthjee/lemonade:latest
+        name: sample
     steps:
       - checkout
       - run:
