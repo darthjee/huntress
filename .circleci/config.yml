@@ -12,6 +12,8 @@ jobs:
     docker:
       - image: circleci/node:17
       - image: darthjee/lemonade:latest
+        environment:
+          LEMONADE_CONFIG='{"routes":[{"path":"/","content":"This is the root route"}]}'
         name: sample
         volumes:
           - ./source/spec/support/sample_config:/home/app/app/config
