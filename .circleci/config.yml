@@ -44,4 +44,4 @@ jobs:
           command: npm install
       - run:
           name: Lint
-          command: npx eslint
+          command: npx eslint app/
