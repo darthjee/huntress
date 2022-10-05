@@ -7,6 +7,11 @@ workflows:
           filters:
             tags:
               only: /.*/
+      - checks:
+          requires: [test]
+          filters:
+            tags:
+              only: /.*/
 jobs:
   test:
     docker:
@@ -15,17 +20,28 @@ jobs:
         environment:
           LEMONADE_CONFIG={"routes":[{"path":"/","content":"This is the root route"}]}
         name: sample
-        volumes:
-          - ./source/spec/support/sample_config:/home/app/app/config
-          - ./source/spec/support/sample_config:/home/app/app
     steps:
       - checkout
       - run:
           name: Set folder
-          command: cp source/* ./ -r; rm source -rf
+          command: cp source/* source/.??* ./ -r; rm source -rf
       - run:
           name: NPM install
           command: npm install
       - run:
           name: Jasmine
           command: npx jasmine
+  checks:
+    docker:
+      - image: circleci/node:17
+    steps:
+      - checkout
+      - run:
+          name: Set folder
+          command: cp source/* source/.??* ./ -r; rm source -rf
+      - run:
+          name: NPM install
+          command: npm install
+      - run:
+          name: Lint
+          command: npx eslint app/ spec/
