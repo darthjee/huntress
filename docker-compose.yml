@@ -37,6 +37,7 @@ services:
     depends_on: [sample-application, base-build]
     networks:
       - huntress-test
+
   sample-application:
     hostname: sample
     image: darthjee/lemonade
