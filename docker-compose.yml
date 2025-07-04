@@ -33,9 +33,8 @@ services:
 
   huntress-test:
     <<: *base
-    depends_on: [base-build]
     entrypoint: /bin/bash
-    depends_on: [sample-application]
+    depends_on: [sample-application, base-build]
     networks:
       - huntress-test
   sample-application:
