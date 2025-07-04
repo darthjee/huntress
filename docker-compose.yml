@@ -1,12 +1,23 @@
 services:
+  ########### BASE #############
   base: &base
     image: darthjee/huntress:latest
     volumes:
       - ./source:/home/app/app
       - ./.node_modules:/home/app/app/node_modules
 
+  base-build:
+    <<: *base
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: echo done
+
+  ########### SERVICES ###########
+
   huntress:
     <<: *base
+    depends_on: [base-build]
     ports:
       - 127.0.0.1:3000:80
     networks:
@@ -14,6 +25,7 @@ services:
 
   huntress-dev:
     <<: *base
+    depends_on: [base-build]
     ports:
       - 127.0.0.1:3000:80
     networks:
@@ -21,6 +33,7 @@ services:
 
   huntress-test:
     <<: *base
+    depends_on: [base-build]
     entrypoint: /bin/bash
     depends_on: [sample-application]
     networks:

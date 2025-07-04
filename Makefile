@@ -10,12 +10,7 @@ up-sample:
 
 build:
 	docker build . -t $(IMAGE_NAME)
-
-ensure-image:
-	if ! (docker images |  grep $(IMAGE_NAME)); then \
-	  make build; \
-	fi
-
+	
 up:
 	docker-compose up $(HUNTRESS)
 
