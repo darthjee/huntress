@@ -1,16 +1,16 @@
 PROJECT=huntress
 HUNTRESS=$(PROJECT)
-HUNTRESS_NAME=darthjee/$(HUNTRESS)
+IMAGE_NAME=darthjee/$(HUNTRESS)
 SAMPLE=sample
 
 up-sample:
 	docker-compose -f applications/$(SAMPLE)/docker-compose.yml up sample-dev
 
 build:
-	docker build . -t $(HUNTRESS_NAME)
+	docker build . -t $(IMAGE_NAME)
 
 up:
-	docker-compose up $(HUNTRESS_NAME)
+	docker-compose up $(HUNTRESS)
 
 test:
-	docker-compose run -it $(HUNTRESS_NAME)-test /bin/bash
+	docker-compose run -it $(HUNTRESS)-test /bin/bash
