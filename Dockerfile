@@ -1,7 +1,8 @@
 FROM node:18-alpine
 
 RUN mkdir -p /home/app/app; \
-    chown node /home/app -R;
+    chown node /home/app -R; \
+    apk add bash
 
 WORKDIR /home/app/app
 
