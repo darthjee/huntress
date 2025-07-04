@@ -10,4 +10,7 @@ build:
 	docker build . -t $(HUNTRESS_NAME)
 
 up:
-	docker-compose up huntress
+	docker-compose up $(HUNTRESS_NAME)
+
+test:
+	docker-compose run -it $(HUNTRESS_NAME)-test /bin/bash
