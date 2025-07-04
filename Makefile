@@ -20,4 +20,4 @@ up:
 	docker-compose up $(HUNTRESS)
 
 dev:
-	docker-compose run -it $(HUNTRESS)-test /bin/bash
+	docker-compose run -it $(HUNTRESS)-test

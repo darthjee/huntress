@@ -21,7 +21,7 @@ services:
 
   huntress-test:
     <<: *base
-    entrypoint: /bin/sh
+    entrypoint: /bin/bash
     depends_on: [sample-application]
     networks:
       - huntress-test
