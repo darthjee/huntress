@@ -1,6 +1,5 @@
 const http = require('http');
 const _ = require('lodash');
-const RemoteConfig = require('./remote_config');
 
 class RequestHandler {
   constructor (request, response, remoteConfig) {
