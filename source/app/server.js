@@ -1,10 +1,17 @@
 const http = require('http');
 const requestHandler = require('./request_handler');
+const ProxyConfig = require('./proxy_config');
 
-const RemoteConfig = require('./remote_config');
-const remoteConfig = new RemoteConfig({domain: 'sample', port: 80, basePath: '/'});
-const server = http.createServer(requestHandler.build(remoteConfig));
-const port = 80;
+const proxyConfig = new ProxyConfig({
+  domain: 'sample',
+  protocol: 'http',
+  port: 80,
+  basePath: '/',
+  listenPort: 80,
+});
+
+const server = http.createServer(requestHandler.build(proxyConfig.remoteConfig));
+const port = proxyConfig.localConfig.port;
 
 server.listen(port);
 console.info('------------------------------------------------');
