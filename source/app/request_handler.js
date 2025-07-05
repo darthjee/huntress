@@ -6,8 +6,8 @@ class RequestHandler {
   constructor (request, response, remoteConfig) {
     this.request = request;
     this.response = response;
-    this.remoteConfig = remoteConfig || new RemoteConfig({domain: 'sample', port: 80, basePath: '/'});
-
+    this.remoteConfig = remoteConfig;
+    
     _.bindAll(this, '_handleResponse', '_handleData', '_end');
   }
 
