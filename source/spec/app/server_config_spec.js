@@ -2,12 +2,19 @@ const ServerConfig = require('../../app/server_config');
 
 describe('ServerConfig', function () {
   describe('fullUrl', function () {
-    let config;
+    let config, protocol, domain, port, basePath;
 
     describe('when using HTTP protocol', function () {
+      beforeEach(function () {
+        protocol = 'http';
+        domain = 'example.com';
+        basePath = '/';
+      });
+
       describe('with default port', function () {
         beforeEach(function () {
-          config = new ServerConfig({ protocol: 'http', domain: 'example.com', port: 80, basePath: '/' });
+          port = 80;
+          config = new ServerConfig({ protocol, domain, port, basePath });
         });
 
         it('constructs the correct full URL', function () {
@@ -18,7 +25,8 @@ describe('ServerConfig', function () {
 
       describe('with custom port', function () {
         beforeEach(function () {
-          config = new ServerConfig({ protocol: 'http', domain: 'example.com', port: 3000, basePath: '/' });
+          port = 3000;
+          config = new ServerConfig({ protocol, domain, port, basePath });
         });
 
         it('constructs the correct full URL', function () {
@@ -29,9 +37,16 @@ describe('ServerConfig', function () {
     });
 
     describe('when using HTTPS protocol', function () {
+      beforeEach(function () {
+        protocol = 'https';
+        domain = 'example.com';
+        basePath = '/';
+      });
+
       describe('with default port', function () {
         beforeEach(function () {
-          config = new ServerConfig({ protocol: 'https', domain: 'example.com', port: 443, basePath: '/' });
+          port = 443;
+          config = new ServerConfig({ protocol, domain, port, basePath });
         });
 
         it('constructs the correct full URL', function () {
@@ -42,7 +57,8 @@ describe('ServerConfig', function () {
 
       describe('with custom port', function () {
         beforeEach(function () {
-          config = new ServerConfig({ protocol: 'https', domain: 'example.com', port: 8443, basePath: '/' });
+          port = 8443;
+          config = new ServerConfig({ protocol, domain, port, basePath });
         });
 
         it('constructs the correct full URL', function () {
@@ -54,7 +70,11 @@ describe('ServerConfig', function () {
 
     describe('when handling basePath', function () {
       beforeEach(function () {
-        config = new ServerConfig({ protocol: 'http', domain: 'example.com', port: 80, basePath: '/api/' });
+        protocol = 'http';
+        domain = 'example.com';
+        port = 80;
+        basePath = '/api/';
+        config = new ServerConfig({ protocol, domain, port, basePath });
       });
 
       it('constructs the correct full URL with basePath', function () {
