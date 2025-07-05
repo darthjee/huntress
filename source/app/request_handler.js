@@ -1,10 +1,12 @@
 const http = require('http');
 const _ = require('lodash');
+const ServerConfig = require('./server_config');
 
 class RequestHandler {
   constructor (request, response) {
     this.request = request;
     this.response = response;
+    this.serverConfig = new ServerConfig('sample', 80, '/');
 
     _.bindAll(this, '_handleResponse', '_handleData', '_end');
   }
@@ -18,7 +20,7 @@ class RequestHandler {
   }
 
   _url () {
-    return 'http://sample/' + this.request.url;
+    return this.serverConfig.fullUrl(this.request.url);
   }
 
   _handleResponse (response) {
