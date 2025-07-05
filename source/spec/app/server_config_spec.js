@@ -2,7 +2,9 @@ const ServerConfig = require('../../app/server_config');
 
 describe('ServerConfig', function () {
   describe('fullUrl', function () {
-    let config, protocol, domain, port, basePath;
+    let protocol, domain, port, basePath;
+
+    const subject = () => new ServerConfig({ protocol, domain, port, basePath });
 
     describe('when using HTTP protocol', function () {
       beforeEach(function () {
@@ -14,11 +16,10 @@ describe('ServerConfig', function () {
       describe('with default port', function () {
         beforeEach(function () {
           port = 80;
-          config = new ServerConfig({ protocol, domain, port, basePath });
         });
 
         it('constructs the correct full URL', function () {
-          const url = config.fullUrl('/test');
+          const url = subject().fullUrl('/test');
           expect(url).toBe('http://example.com/test');
         });
       });
@@ -26,11 +27,10 @@ describe('ServerConfig', function () {
       describe('with custom port', function () {
         beforeEach(function () {
           port = 3000;
-          config = new ServerConfig({ protocol, domain, port, basePath });
         });
 
         it('constructs the correct full URL', function () {
-          const url = config.fullUrl('/test');
+          const url = subject().fullUrl('/test');
           expect(url).toBe('http://example.com:3000/test');
         });
       });
@@ -46,11 +46,10 @@ describe('ServerConfig', function () {
       describe('with default port', function () {
         beforeEach(function () {
           port = 443;
-          config = new ServerConfig({ protocol, domain, port, basePath });
         });
 
         it('constructs the correct full URL', function () {
-          const url = config.fullUrl('/test');
+          const url = subject().fullUrl('/test');
           expect(url).toBe('https://example.com/test');
         });
       });
@@ -58,11 +57,10 @@ describe('ServerConfig', function () {
       describe('with custom port', function () {
         beforeEach(function () {
           port = 8443;
-          config = new ServerConfig({ protocol, domain, port, basePath });
         });
 
         it('constructs the correct full URL', function () {
-          const url = config.fullUrl('/test');
+          const url = subject().fullUrl('/test');
           expect(url).toBe('https://example.com:8443/test');
         });
       });
@@ -74,16 +72,15 @@ describe('ServerConfig', function () {
         domain = 'example.com';
         port = 80;
         basePath = '/api/';
-        config = new ServerConfig({ protocol, domain, port, basePath });
       });
 
       it('constructs the correct full URL with basePath', function () {
-        const url = config.fullUrl('/test');
+        const url = subject().fullUrl('/test');
         expect(url).toBe('http://example.com/api/test');
       });
 
       it('constructs the correct full URL with paths without leading slashes', function () {
-        const url = config.fullUrl('test');
+        const url = subject().fullUrl('test');
         expect(url).toBe('http://example.com/api/test');
       });
     });
