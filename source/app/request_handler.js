@@ -1,12 +1,12 @@
 const http = require('http');
 const _ = require('lodash');
-const ServerConfig = require('./server_config');
+const RemoteConfig = require('./remote_config');
 
 class RequestHandler {
   constructor (request, response) {
     this.request = request;
     this.response = response;
-    this.serverConfig = new ServerConfig({domain: 'sample', port: 80, basePath: '/'});
+    this.remoteConfig = new RemoteConfig({domain: 'sample', port: 80, basePath: '/'});
 
     _.bindAll(this, '_handleResponse', '_handleData', '_end');
   }
@@ -20,7 +20,7 @@ class RequestHandler {
   }
 
   _url () {
-    return this.serverConfig.fullUrl(this.request.url);
+    return this.remoteConfig.fullUrl(this.request.url);
   }
 
   _handleResponse (response) {
