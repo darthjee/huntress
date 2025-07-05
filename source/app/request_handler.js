@@ -11,8 +11,8 @@ class RequestHandler {
     _.bindAll(this, '_handleResponse', '_handleData', '_end');
   }
 
-  static call(request, response) {
-    new RequestHandler(request, response).call();
+  static build() {
+    return (request, response) => new RequestHandler(request, response).call();
   }
 
   call () {

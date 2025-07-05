@@ -1,7 +1,7 @@
 const http = require('http');
 const requestHandler = require('./request_handler');
 
-const server = http.createServer(requestHandler.call);
+const server = http.createServer(requestHandler.build());
 const port = 80;
 
 server.listen(port);
