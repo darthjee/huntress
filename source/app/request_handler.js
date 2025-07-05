@@ -1,18 +1,17 @@
 const http = require('http');
 const _ = require('lodash');
-const ServerConfig = require('./server_config');
 
 class RequestHandler {
-  constructor (request, response) {
+  constructor (request, response, remoteConfig) {
     this.request = request;
     this.response = response;
-    this.serverConfig = new ServerConfig({domain: 'sample', port: 80, basePath: '/'});
-
+    this.remoteConfig = remoteConfig;
+    
     _.bindAll(this, '_handleResponse', '_handleData', '_end');
   }
 
-  static call(request, response) {
-    new RequestHandler(request, response).call();
+  static build(remoteConfig) {
+    return (request, response) => new RequestHandler(request, response, remoteConfig).call();
   }
 
   call () {
@@ -20,7 +19,7 @@ class RequestHandler {
   }
 
   _url () {
-    return this.serverConfig.fullUrl(this.request.url);
+    return this.remoteConfig.fullUrl(this.request.url);
   }
 
   _handleResponse (response) {

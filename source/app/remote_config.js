@@ -1,6 +1,6 @@
 const { URL } = require('url');
 
-class ServerConfig {
+class RemoteConfig {
   constructor({ protocol, domain, port, basePath }) {
     this.protocol = protocol || 'http';
     this.domain = domain;
@@ -23,4 +23,4 @@ class ServerConfig {
   }
 }
 
-module.exports = ServerConfig;
+module.exports = RemoteConfig;

@@ -1,8 +1,9 @@
 const http = require('http');
 const RequestHandler = require('../../app/request_handler');
+const RemoteConfig = require('../../app/remote_config');
 
 describe('RequestHandler', function () {
-  let request, response;
+  let request, response, remoteConfig;
 
   beforeEach(function () {
     request = { url: 'test-path' };
@@ -10,6 +11,8 @@ describe('RequestHandler', function () {
       write: jasmine.createSpy('write'),
       end: jasmine.createSpy('end'),
     };
+
+    remoteConfig = new RemoteConfig({ domain: 'sample', port: 80, basePath: '/' });
 
     spyOn(http, 'get').and.callFake((url, callback) => {
       const mockResponse = {
@@ -27,7 +30,7 @@ describe('RequestHandler', function () {
   });
 
   it('should call the correct URL with http://sample/', function () {
-    const requestHandler = new RequestHandler(request, response);
+    const requestHandler = new RequestHandler(request, response, remoteConfig);
 
     requestHandler.call();
 
@@ -35,7 +38,7 @@ describe('RequestHandler', function () {
   });
 
   it('should write the correct data to the response', function () {
-    const requestHandler = new RequestHandler(request, response);
+    const requestHandler = new RequestHandler(request, response, remoteConfig);
 
     requestHandler.call();
 
@@ -43,7 +46,7 @@ describe('RequestHandler', function () {
   });
 
   it('should end the response after writing data', function () {
-    const requestHandler = new RequestHandler(request, response);
+    const requestHandler = new RequestHandler(request, response, remoteConfig);
 
     requestHandler.call();
 

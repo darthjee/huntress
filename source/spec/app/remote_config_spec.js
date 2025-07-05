@@ -1,10 +1,10 @@
-const ServerConfig = require('../../app/server_config');
+const RemoteConfig = require('../../app/remote_config');
 
-describe('ServerConfig', function () {
+describe('RemoteConfig', function () {
   describe('fullUrl', function () {
     let protocol, domain, port, basePath;
 
-    const subject = () => new ServerConfig({ protocol, domain, port, basePath });
+    const subject = () => new RemoteConfig({ protocol, domain, port, basePath });
 
     describe('when using HTTP protocol', function () {
       beforeEach(function () {
