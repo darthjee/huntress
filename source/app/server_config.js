@@ -1,12 +1,13 @@
 class ServerConfig {
-    constructor({ domain, port, basePath }) {
+    constructor({ protocol, domain, port, basePath }) {
+      this.protocol = protocol || 'http';
       this.domain = domain;
-      this.port = port;
-      this.basePath = basePath;
+      this.port = port || 80;
+      this.basePath = basePath || '/';
     }
   
     fullUrl(path) {
-      const base = `http://${this.domain}${this.basePath}`;
+      const base = `${this.protocol}://${this.domain}${this.basePath}`;
       return `${base}${path}`;
     }
   }
