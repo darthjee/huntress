@@ -1,5 +1,5 @@
 const http = require('http');
-const requestHandler = require('../../app/request_handler');
+const RequestHandler = require('../../app/request_handler');
 
 describe('RequestHandler', function () {
   let request, response;
@@ -27,7 +27,9 @@ describe('RequestHandler', function () {
   });
 
   it('should call the correct URL with http://sample/', function () {
-    requestHandler(request, response);
+    var requestHandler = new RequestHandler(request, response);
+
+    requestHandler.call();
 
     expect(http.get).toHaveBeenCalledWith('http://sample/test-path', jasmine.any(Function));
   });
