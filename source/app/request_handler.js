@@ -3,16 +3,16 @@ const _ = require('lodash');
 const RemoteConfig = require('./remote_config');
 
 class RequestHandler {
-  constructor (request, response) {
+  constructor (request, response, remoteConfig) {
     this.request = request;
     this.response = response;
-    this.remoteConfig = new RemoteConfig({domain: 'sample', port: 80, basePath: '/'});
+    this.remoteConfig = remoteConfig || new RemoteConfig({domain: 'sample', port: 80, basePath: '/'});
 
     _.bindAll(this, '_handleResponse', '_handleData', '_end');
   }
 
-  static build() {
-    return (request, response) => new RequestHandler(request, response).call();
+  static build(remoteConfig) {
+    return (request, response) => new RequestHandler(request, response, remoteConfig).call();
   }
 
   call () {
