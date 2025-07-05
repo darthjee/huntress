@@ -9,7 +9,7 @@ class ServerConfig {
   }
 
   fullUrl(path) {
-    const fullPath = this.basePath + path.replace(/^\//, "");
+    const fullPath = this.basePath + path.replace(/^\//, '');
     const url = new URL(fullPath, `${this.protocol}://${this.domain}`);
     if ((this.protocol === 'http' && this.port !== 80) || (this.protocol === 'https' && this.port !== 443)) {
       url.port = this.port;
