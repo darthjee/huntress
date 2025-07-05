@@ -14,7 +14,8 @@ class ServerConfig {
   }
 
   _createUrl(path) {
-    const fullPath = this.basePath + path.replace(/^\//, '');
+    const fullPath = `${this.basePath.replace(/\/+$/, '')}/${path.replace(/^\/+/, '')}`;
+    
     return new URL(fullPath, `${this.protocol}://${this.domain}:${this.port}`);
   }
 }
