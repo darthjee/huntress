@@ -27,10 +27,26 @@ describe('RequestHandler', function () {
   });
 
   it('should call the correct URL with http://sample/', function () {
-    var requestHandler = new RequestHandler(request, response);
+    const requestHandler = new RequestHandler(request, response);
 
     requestHandler.call();
 
     expect(http.get).toHaveBeenCalledWith('http://sample/test-path', jasmine.any(Function));
+  });
+
+  it('should write the correct data to the response', function () {
+    const requestHandler = new RequestHandler(request, response);
+
+    requestHandler.call();
+
+    expect(response.write).toHaveBeenCalledWith('mock-data');
+  });
+
+  it('should end the response after writing data', function () {
+    const requestHandler = new RequestHandler(request, response);
+
+    requestHandler.call();
+
+    expect(response.end).toHaveBeenCalled();
   });
 });
