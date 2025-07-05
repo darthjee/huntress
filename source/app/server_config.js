@@ -1,14 +1,14 @@
 class ServerConfig {
-    constructor(domain, port, basePath) {
-      this.domain = domain;
-      this.port = port;
-      this.basePath = basePath;
-    }
-  
-    fullUrl(path) {
-      const base = `http://${this.domain}${this.basePath}`;
-      return `${base}${path}`;
-    }
+  constructor(config) {
+    this.domain = config.domain || 'localhost';
+    this.port = config.port || 80;
+    this.basePath = config.basePath || '/';
   }
-  
-  module.exports = ServerConfig;
+
+  fullUrl(path) {
+    const base = `http://${this.domain}${this.basePath}`;
+    return `${base}${path}`;
+  }
+}
+
+module.exports = ServerConfig;

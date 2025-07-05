@@ -6,7 +6,7 @@ class RequestHandler {
   constructor (request, response) {
     this.request = request;
     this.response = response;
-    this.serverConfig = new ServerConfig('sample', 80, '/');
+    this.serverConfig = new ServerConfig({domain: 'sample', port: 80, basePath: '/'});
 
     _.bindAll(this, '_handleResponse', '_handleData', '_end');
   }
