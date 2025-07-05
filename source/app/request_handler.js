@@ -9,6 +9,10 @@ class RequestHandler {
     _.bindAll(this, '_handleResponse', '_handleData', '_end');
   }
 
+  static call(request, response) {
+    new RequestHandler(request, response).call();
+  }
+
   call () {
     http.get(this._url(), this._handleResponse);
   }
@@ -32,6 +36,4 @@ class RequestHandler {
   }
 }
 
-module.exports = (request, response) => {
-  return new RequestHandler(request, response).call();
-};
+module.exports = RequestHandler;
