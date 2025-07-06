@@ -14,6 +14,22 @@
     "eslint-plugin-n": "^15.3.0",
     "eslint-plugin-promise": "^6.0.1",
     "jasmine": "4.4.0",
+    "nyc": "^17.1.0",
     "request": "2.88.2"
+  },
+  "scripts": {
+    "test": "nyc npx jasmine",
+    "testReport": "nyc --reporter=html npx jasmine",
+    "lint": "npx eslint app/ spec/"
+  },
+  "nyc": {
+    "reporter": ["text", "html"],
+    "exclude": ["spec/**", "lib/jasmine_examples/**", "coverage/**"],
+    "all": true,
+    "check-coverage": true,
+    "branches": 80,
+    "functions": 80,
+    "lines": 80,
+    "statements": 80
   }
 }
