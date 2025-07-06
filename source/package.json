@@ -16,7 +16,8 @@
     "jasmine": "4.4.0",
     "nyc": "^17.1.0",
     "plato": "^1.7.0",
-    "request": "2.88.2"
+    "request": "2.88.2",
+    "sonar-scanner": "^3.1.0"
   },
   "scripts": {
     "test": "nyc npx jasmine",
