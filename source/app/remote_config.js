@@ -8,7 +8,7 @@ class RemoteConfig {
     this.basePath = basePath || '/';
   }
 
-  fullUrl(path) {
+  fullUrl(path = "/") {
     const url = this._createUrl(path);
     return url.toString();
   }
