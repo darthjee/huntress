@@ -26,6 +26,45 @@ describe('ProxyConfig', function () {
       expect(remoteConfig.port).toBe(port);
       expect(remoteConfig.basePath).toBe(basePath);
     });
+
+    describe('when no protocol is provided', function () {
+      beforeEach(function () {
+        protocol = undefined;
+      });
+
+      it('should default to "http"', function () {
+        const proxyConfig = subject();
+        const remoteConfig = proxyConfig.remoteConfig;
+
+        expect(remoteConfig.protocol).toBe('http');
+      });
+    });
+
+    describe('when no port is provided', function () {
+      beforeEach(function () {
+        port = undefined;
+      });
+
+      it('should default to 80', function () {
+        const proxyConfig = subject();
+        const remoteConfig = proxyConfig.remoteConfig;
+
+        expect(remoteConfig.port).toBe(80);
+      });
+    });
+
+    describe('when no basePath is provided', function () {
+      beforeEach(function () {
+        basePath = undefined;
+      });
+
+      it('should default to "/"', function () {
+        const proxyConfig = subject();
+        const remoteConfig = proxyConfig.remoteConfig;
+
+        expect(remoteConfig.basePath).toBe('/');
+      });
+    });
   });
 
   describe('localConfig', function () {
