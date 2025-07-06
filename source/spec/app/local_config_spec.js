@@ -1,13 +1,29 @@
 const LocalConfig = require('../../app/local_config');
 
 describe('LocalConfig', function () {
-  it('should set the default port to 3000 if no port is provided', function () {
-    const config = new LocalConfig({});
-    expect(config.port).toBe(3000);
+  let port;
+
+  const subject = () => new LocalConfig({ port });
+
+  describe('when no port is provided', function () {
+    beforeEach(function () {
+      port = undefined;
+    });
+
+    it('should set the default port to 3000', function () {
+      const config = subject();
+      expect(config.port).toBe(3000);
+    });
   });
 
-  it('should set the port to the provided value', function () {
-    const config = new LocalConfig({ port: 8080 });
-    expect(config.port).toBe(8080);
+  describe('when a port is provided', function () {
+    beforeEach(function () {
+      port = 8080;
+    });
+
+    it('should set the port to the provided value', function () {
+      const config = subject();
+      expect(config.port).toBe(8080);
+    });
   });
 });
