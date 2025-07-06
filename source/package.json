@@ -15,6 +15,7 @@
     "eslint-plugin-promise": "^6.0.1",
     "jasmine": "4.4.0",
     "nyc": "^17.1.0",
+    "plato": "^1.7.0",
     "request": "2.88.2"
   },
   "scripts": {
@@ -23,8 +24,15 @@
     "lint": "npx eslint app/ spec/"
   },
   "nyc": {
-    "reporter": ["text", "html"],
-    "exclude": ["spec/**", "lib/jasmine_examples/**", "coverage/**"],
+    "reporter": [
+      "text",
+      "html"
+    ],
+    "exclude": [
+      "spec/**",
+      "lib/jasmine_examples/**",
+      "coverage/**"
+    ],
     "all": true,
     "check-coverage": true,
     "branches": 80,
