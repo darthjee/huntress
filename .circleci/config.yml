@@ -30,7 +30,7 @@ jobs:
           command: npm install
       - run:
           name: Jasmine
-          command: npx jasmine
+          command: npm test
   checks:
     docker:
       - image: circleci/node:17
