@@ -21,7 +21,8 @@
   "scripts": {
     "test": "nyc npx jasmine",
     "testReport": "nyc --reporter=html npx jasmine",
-    "lint": "npx eslint app/ spec/"
+    "lint": "npx eslint app/ spec/",
+    "plato": "plato -r -d report app/"
   },
   "nyc": {
     "reporter": [
