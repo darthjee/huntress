@@ -15,35 +15,45 @@ describe('ProxyConfig', function () {
     listenPort = 3000;
   });
 
-  it('should initialize remoteConfig with the correct values', function () {
-    const proxyConfig = subject();
-    const remoteConfig = proxyConfig.remoteConfig;
+  describe('remoteConfig', function () {
+    it('should initialize with the correct values', function () {
+      const proxyConfig = subject();
+      const remoteConfig = proxyConfig.remoteConfig;
 
-    expect(remoteConfig).toBeInstanceOf(RemoteConfig);
-    expect(remoteConfig.protocol).toBe(protocol);
-    expect(remoteConfig.domain).toBe(domain);
-    expect(remoteConfig.port).toBe(port);
-    expect(remoteConfig.basePath).toBe(basePath);
+      expect(remoteConfig).toBeInstanceOf(RemoteConfig);
+      expect(remoteConfig.protocol).toBe(protocol);
+      expect(remoteConfig.domain).toBe(domain);
+      expect(remoteConfig.port).toBe(port);
+      expect(remoteConfig.basePath).toBe(basePath);
+    });
   });
 
-  it('should initialize localConfig with the correct values', function () {
-    const proxyConfig = subject();
-    const localConfig = proxyConfig.localConfig;
+  describe('localConfig', function () {
+    context('when listenPort is provided', function () {
+      beforeEach(function () {
+        listenPort = 3000;
+      });
 
-    expect(localConfig).toBeInstanceOf(LocalConfig);
-    expect(localConfig.port).toBe(listenPort);
-  });
+      it('should initialize with the provided listenPort', function () {
+        const proxyConfig = subject();
+        const localConfig = proxyConfig.localConfig;
 
-  describe('when no listenPort is provided', function () {
-    beforeEach(function () {
-      listenPort = undefined;
+        expect(localConfig).toBeInstanceOf(LocalConfig);
+        expect(localConfig.port).toBe(listenPort);
+      });
     });
 
-    it('should set the default listenPort to 3000', function () {
-      const proxyConfig = subject();
-      const localConfig = proxyConfig.localConfig;
+    context('when listenPort is not provided', function () {
+      beforeEach(function () {
+        listenPort = undefined;
+      });
 
-      expect(localConfig.port).toBe(3000);
+      it('should set the default listenPort to 3000', function () {
+        const proxyConfig = subject();
+        const localConfig = proxyConfig.localConfig;
+
+        expect(localConfig.port).toBe(3000);
+      });
     });
   });
 });
