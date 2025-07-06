@@ -18,7 +18,8 @@
     "request": "2.88.2"
   },
   "scripts": {
-    "test": "nyc npx jasmine"
+    "test": "nyc npx jasmine",
+    "testReport": "nyc --reporter=html npx jasmine"
   },
   "nyc": {
     "reporter": ["text", "html"],
