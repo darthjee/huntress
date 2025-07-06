@@ -29,7 +29,7 @@ describe('ProxyConfig', function () {
   });
 
   describe('localConfig', function () {
-    context('when listenPort is provided', function () {
+    describe('when listenPort is provided', function () {
       beforeEach(function () {
         listenPort = 3000;
       });
@@ -43,7 +43,7 @@ describe('ProxyConfig', function () {
       });
     });
 
-    context('when listenPort is not provided', function () {
+    describe('when listenPort is not provided', function () {
       beforeEach(function () {
         listenPort = undefined;
       });
